@@ -11,8 +11,11 @@ var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/project');
 var pageRouter = require('./routes/page');
 var registerRouter = require('./routes/register');
+<<<<<<< HEAD
 var loginRouter = require('./routes/login');
 var backRouter = require('./routes/back');
+=======
+>>>>>>> 6862d6b1208122b35c9e064fc8d3ee3b6d2f5a6d
 
 var app = express();
 
@@ -42,8 +45,11 @@ app.use('/users', usersRouter);
 app.use('/project', projectRouter);
 app.use('/page', pageRouter);
 app.use('/register', registerRouter);
+<<<<<<< HEAD
 app.use('/login', loginRouter);
 app.use('/back', backRouter);
+=======
+>>>>>>> 6862d6b1208122b35c9e064fc8d3ee3b6d2f5a6d
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
