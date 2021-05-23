@@ -35,4 +35,24 @@ router.get('/video', function(req, res, next) {
 
 
 
+//后台管理
+//用户管理
+router.get('/author', function(req, res, next) {
+    res.render('author')
+});
+
+//评论管理
+router.get('/sayings', function(req, res, next) {
+    res.render('sayings')
+});
+
+//用户列表
+router.get('/admin', function(req, res, next) {
+    res.render('admin')
+});
+
+
+
+
+
 module.exports = router;
