@@ -14,9 +14,8 @@ let database = mysql.createConnection(options);
 
 //建立连接
 database.connect((err) => {
-    if (err) {
-        console.log(err);
-    } else {
+    if (err) throw err;
+    else {
         console.log('数据库连接成功');
     }
 });
