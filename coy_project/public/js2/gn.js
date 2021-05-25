@@ -7,6 +7,14 @@ function add() {
 Array.from(document.getElementsByClassName("upd_bank")).forEach(i => {
     i.onclick = function() {
         id = this.getAttribute("data_id")
-        window.location.href = "/add?id=" + id;
+        window.location.href = "/edit?id=" + id;
+    }
+})
+
+//删除
+Array.from(document.getElementsByClassName("del_bank")).forEach(i => {
+    i.onclick = function() {
+        id = this.getAttribute("data1_id")
+        window.location.href = "/del?id=" + id;
     }
 })

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="/css2/layui.css">
+</head>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>用户管理 - 删除用户</legend>
+                <div class="layui-field-box">
+                    <form class="layui-form" action="/del" method="POST">
+                        <input type="hidden" name="id" value="<%=row.id %>">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="<%=row.username %>">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" value="<%=row.password %>">
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="submit" value="立即删除" class="layui-btn">
+                                    <!-- <button class="layui-btn">立即提交</button> -->
+                                    <a href="author"><input type="button" class="layui-btn layui-btn-primary" value="返回"></a>
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+            </fieldset>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/jS2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/layui.js"></script>
+
+    </body>
+
+</html>
