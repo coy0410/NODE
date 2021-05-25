@@ -89,5 +89,17 @@ router.get('/ad_re', function(req, res, next) {
 
 
 
+// //动态展示
+// router.get('/author', function(req, res, next) {
+//     var strsel = "select * from author";
+//     database.query(strsel, (err, rows) => {
+//         if (err) throw err
+
+//     })
+// })
+
+
+
+
 
 module.exports = router;

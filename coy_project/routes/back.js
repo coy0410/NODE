@@ -1,11 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var database = require('../database')
+var database = require('../database');
 
 
 router.get('/', function(req, res, next) {
     res.render('back');
 });
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //管理员登录
 router.post('/', (req, res, next) => {
