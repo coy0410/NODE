@@ -59,23 +59,29 @@
                                 </div>
                                 <div class="layui-inline" style="text-align:left;">
                                     <div class="layui-input-inline">
-                                        <button class="layui-btn"><i class="layui-icon">&#xe615;</i>查询</button>
+                                        <button class="layui-btn"><i class="layui-icon"></i>查询</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <hr>
+                        <div class="layui-btn-group">
+                            <input class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" type="button" onclick="add()" value="新增">
+                            <input class="layui-btn layui-btn-xs dw-refresh" type="button" onclick="" value="刷新">
+                        </div>
+                        <hr>
+
                         <table class="layui-table">
                             <colgroup>
                                 <col width="150">
-                                <col width="150">
-                                <col width="200">
+                                <col width="300">
+                                <col width="300">
                                 <col>
                                 <col>
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th class="selectAll"></th>
+
                                     <th>号码</th>
                                     <th>用户名</th>
                                     <th>密码</th>
@@ -83,14 +89,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" name="id" value="1"></td>
-                                    <td>贤心</td>
-                                    <td>2016-11-29</td>
-                                    <td>人生就像是一场修行</td>
-                                    <td class="text-center">
-                                        <div class="layui-btn-group">
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
+                                <% for(let o of data){%>
+                                    <tr>
+                                        <td>
+                                            <%=o.id %>
+                                        </td>
+                                        <td>
+                                            <%=o.username %>
+                                        </td>
+                                        <td>
+                                            <%=o.password %>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id="<%=o.id %>">编辑</button>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+
+
+                                        <!-- <tr>
+                                        <td><input type="checkbox" name="id" value="1"></td>
+                                        <td>贤心</td>
+                                        <td>2016-11-29</td>
+                                        <td>人生就像是一场修行</td>
+                                        <td class="text-center">
+                                            <div class="layui-btn-group">
+                                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
                       <i class="layui-icon">&#xe654;</i>新增
                   </button>
                                             <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">
@@ -99,47 +123,47 @@
                                             <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url="delete.html?id=1" dw-title="小明">
                             <i class="layui-icon">&#xe640;</i>删除
                           </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="id" value="2"></td>
-                                    <td>许闲心</td>
-                                    <td>2016-11-28</td>
-                                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                                    <td class="text-center">
-                                        <div class="layui-btn-group">
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
+                    </div>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="id" value="2"></td>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                        <td class="text-center">
+                            <div class="layui-btn-group">
+                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
                       <i class="layui-icon">&#xe654;</i>新增
                   </button>
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">
+                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">
                                 <i class="layui-icon">&#xe642;</i>编辑
                               </button>
-                                            <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url="delete.html?id=1" dw-title="小明">
+                                <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url="delete.html?id=1" dw-title="小明">
                                 <i class="layui-icon">&#xe640;</i>删除
                               </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="id" value="3 "></td>
-                                    <td>sentsin</td>
-                                    <td>2016-11-27</td>
-                                    <td> Life is either a daring adventure or nothing.</td>
-                                    <td class="text-center">
-                                        <div class="layui-btn-group">
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="id" value="3 "></td>
+                        <td>sentsin</td>
+                        <td>2016-11-27</td>
+                        <td> Life is either a daring adventure or nothing.</td>
+                        <td class="text-center">
+                            <div class="layui-btn-group">
+                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
                       <i class="layui-icon">&#xe654;</i>新增
                   </button>
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">
+                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">
                                 <i class="layui-icon">&#xe642;</i>编辑
                               </button>
-                                            <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url="delete.html?id=1" dw-title="小明">
+                                <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url="delete.html?id=1" dw-title="小明">
                                 <i class="layui-icon">&#xe640;</i>删除
                               </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                            </div>
+                        </td>
+                    </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -155,7 +179,7 @@
     <script type="text/javascript" src="/js2/jquery.min.js"></script>
     <script type="text/javascript" src="/js2/layui.js"></script>
     <script type="text/javascript" src="/js2/icheck.js"></script>
-    <script type="text/javascript" src="/js2/dw.js"></script>
+    <script src="/js2/gn.js"></script>
 </body>
 
 </html>

@@ -20,4 +20,20 @@ database.connect((err) => {
     }
 });
 
+// //数据池连接
+// database.sql = function(query, callback) {
+//     if (!query) {
+//         callback();
+//         return;
+//     }
+
+//     mysql.createPool.query(query, function(err, rows) {
+//         if (err) {
+//             callback(err, null);
+//             return;
+//         }
+//         callback(null, rows);
+//     })
+// }
+
 module.exports = database;

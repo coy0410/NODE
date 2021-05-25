@@ -3,12 +3,14 @@ var router = express.Router();
 var database = require('../database');
 
 
+//后台用户管理
 router.get('/', function(req, res, next) {
     res.render('back');
 });
 
 
-//
+
+
 
 
 
