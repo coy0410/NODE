@@ -26,8 +26,36 @@ router.get('/tracks', function(req, res, next) {
 
 //博客
 router.get('/blog', function(req, res, next) {
-    res.render('blog')
+    var query = 'SELECT * FROM  article ORDER BY  articleID DESC';
+    database.query(query, function(err, rows, fields) {
+        var articles = rows;
+        articles.forEach(function(ele) {
+            var year = ele.articleTime.getFullYear();
+            var month = ele.articleTime.getMonth() + 1 > 10 ? ele.articleTime.getMonth() : '0' + (ele.articleTime.getMonth() + 1);
+            var date = ele.articleTime.getDate() > 10 ? ele.articleTime.getDate() : '0' + ele.articleTime.getDate();
+            ele.articleTime = year + '-' + month + '-' + date;
+        });
+        res.render("blog", { articles: articles });
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //影视
 router.get('/video', function(req, res, next) {
@@ -44,8 +72,13 @@ router.get('/author', function(req, res, next) {
     database.query(strsel, (err, rows) => {
         res.render('author', { data: rows });
     })
-
 });
+
+//查询
+
+
+
+
 
 //评论管理
 router.get('/sayings', function(req, res, next) {
