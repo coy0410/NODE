@@ -11,8 +11,8 @@ var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/project');
 var pageRouter = require('./routes/page');
 var registerRouter = require('./routes/register');
-
 var backRouter = require('./routes/back');
+var adloRouter = require('./routes/adlo');
 
 
 
@@ -47,6 +47,7 @@ app.use('/project', projectRouter);
 app.use('/page', pageRouter);
 app.use('/register', registerRouter);
 app.use('/back', backRouter);
+app.use('/adlo', adloRouter);
 
 
 // catch 404 and forward to error handler

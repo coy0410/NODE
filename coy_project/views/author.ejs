@@ -115,7 +115,7 @@
 
         <div class="layui-footer">
             <!-- 底部固定区域 -->
-            © layui.com - 底部固定区域
+            © coy个人博客 - 底部固定区域
         </div>
     </div>
     <script type="text/javascript" src="/js2/jquery.min.js"></script>
@@ -124,6 +124,7 @@
     <script src="/js2/gn.js"></script>
     <script>
         $('form').on('submit', function(e) {
+
             e.preventDefault()
             let searchValue = $('.searchInput').val()
             $.ajax({
@@ -133,25 +134,26 @@
                     searchValue: searchValue
                 },
                 success: function(data) {
-
                     let inner = "";
                     for (let i = 0; i < data.rows.length; i++) {
-                        inner += `< tr >
-                                <td>
-                                    ${data.rows[i].id} 
-                                </td> 
-                                <td>
-                                    ${data.rows[i].username}
-                                </td>
-                                <td>
-                                    ${data.rows[i].password}
-                                </td>
-                                <td class="text-center">
-                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id="${data.rows[i].id}">编辑</button>
-
-                                <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id="${data.rows[i].id}">删除</button>
-                                </td>
-                                < /tr >`
+                        inner +=
+                            `
+                        < tr >
+                                        <td>
+                                           ${data.rows[i].id}
+                                        </td>
+                                        <td>
+                                            ${data.rows[i].username}
+                                        </td>
+                                        <td>
+                                             ${data.rows[i].password}
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id=" ${data.rows[i].id}">编辑</button>
+                                            <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id=" ${data.rows[i].id}">删除</button>
+                                        </td>
+                        < /tr >                       
+                        `
                     }
                     $('tbody').html(inner)
                 }

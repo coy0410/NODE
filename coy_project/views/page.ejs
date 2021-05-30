@@ -73,12 +73,17 @@
             <label>密码：</label>
             <input type="password" name="password" class="mui-input-clear" placeholder="请输入密码">
         </div>
-        <!-- <button type="button" class="mui-btn-block" id="loginBtn">登录</button> -->
-        <input type="submit" value="登录" style="font-size: 18px;display: block;width: 100%;margin-bottom: 10px;padding: 15px 0;">
-        <div class="myfooter">
-            <p> <a href="/register" target="_blank" style="color: #fff;">注册</a></p>
-            <p><a href="ad_lo" target="_blank" style="color: #fff;">管理员登录</a></p>
-        </div>
+        <%if (message) {%>
+            <p style="color: red; text-align: center;">
+                <%=message%>
+            </p>
+            <% } %>
+                <!-- <button type="button" class="mui-btn-block" id="loginBtn">登录</button> -->
+                <input type="submit" value="登录" style="font-size: 18px;display: block;width: 100%;margin-bottom: 10px;padding: 15px 0;">
+                <div class="myfooter">
+                    <p> <a href="/register" target="_blank" style="color: #fff;">注册</a></p>
+                    <p><a href="/adlo" target="_blank" style="color: #fff;">管理员登录</a></p>
+                </div>
     </form>
 
 

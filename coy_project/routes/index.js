@@ -43,20 +43,6 @@ router.get('/blog', function(req, res, next) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //影视
 router.get('/video', function(req, res, next) {
     res.render('video')
@@ -110,34 +96,15 @@ router.get('/yes', function(req, res, next) {
     res.render('yes')
 });
 
-//登录失败
-router.get('/no', function(req, res, next) {
-    res.render('no')
-});
 
 //注册成功
 router.get('/yeah', function(req, res, next) {
     res.render('yeah')
 });
 
-//注册失败：两次密码不一致
-router.get('/non1', function(req, res, next) {
-    res.render('non1')
-});
-
-//注册失败：用户已存在
-router.get('/non2', function(req, res, next) {
-    res.render('non2')
-});
-
-//管理员登录入口
-router.get('/ad_lo', function(req, res, next) {
-    res.render('ad_lo')
-});
-
-//管理员注册入口
-router.get('/ad_re', function(req, res, next) {
-    res.render('ad_re')
+//管理员登录成功
+router.get('/yess', function(req, res, next) {
+    res.render('yess')
 });
 
 

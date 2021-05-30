@@ -6,7 +6,7 @@ var database = require('../database')
 
 /* 注册页面 */
 router.get('/', function(req, res, next) {
-    res.render('register');
+    res.render('register', { message: '' });
 });
 
 //注册1
@@ -53,12 +53,13 @@ router.post('/', (req, res, next) => {
     database.query(str2, (err, results) => {
         if (err) throw err;
         if (body.password != body.re_password) {
-            res.redirect('non1');
+            res.render('register', { message: '两次输入的密码不一致' });
+            return;
         } else {
             var ta = true;
             results.forEach(item => {
                 if (item.username == body.username && item.password == body.password && item.re_password == body.re_password) {
-                    res.redirect('non2');
+                    res.render('register', { message: '该用户已存在' });
                     ta = false;
                     return;
                 }

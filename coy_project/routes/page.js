@@ -7,7 +7,7 @@ var database = require('../database')
 
 /* 登录页. */
 router.get('/', function(req, res, next) {
-    res.render('page');
+    res.render('page', { message: '' });
 });
 
 //登录
@@ -23,7 +23,8 @@ router.post('/', (req, res, next) => {
         if (rows != "") {
             res.redirect('/yes')
         } else {
-            res.redirect('/no')
+            res.render('page', { message: '用户名或密码错误' });
+            return;
         }
 
 

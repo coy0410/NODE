@@ -77,9 +77,14 @@
             <label>确认密码：</label>
             <input type="password" name="re_password" class="mui-input-clear" placeholder="请输入密码">
         </div>
+        <%if (message) {%>
+            <p style="color: red; text-align: center;">
+                <%=message%>
+            </p>
+            <% } %>
 
-        <!-- <button type="button" class="mui-btn-block" id="loginBtn">注册</button> -->
-        <input type="submit" class="mui-btn-block" id="loginBtn" value="注册">
+                <!-- <button type="button" class="mui-btn-block" id="loginBtn">注册</button> -->
+                <input type="submit" class="mui-btn-block" id="loginBtn" value="注册">
     </form>
 
 

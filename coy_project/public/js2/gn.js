@@ -21,5 +21,6 @@ Array.from(document.getElementsByClassName("del_bank")).forEach(i => {
 
 //刷新
 function re() {
+    // confirm("确定刷新吗？")
     location.href = location.href;
 }
