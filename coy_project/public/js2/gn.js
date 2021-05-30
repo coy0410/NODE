@@ -18,3 +18,8 @@ Array.from(document.getElementsByClassName("del_bank")).forEach(i => {
         window.location.href = "/del?id=" + id;
     }
 })
+
+//刷新
+function re() {
+    location.href = location.href;
+}

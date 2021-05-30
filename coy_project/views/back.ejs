@@ -61,23 +61,32 @@
                                     <th>邮箱</th>
                                     <th>电话</th>
                                     <th>爱好</th>
+                                    <th>密码</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>欧阳春</td>
-                                    <td>2642339626@qq.com</td>
-                                    <td>18379476591</td>
-                                    <td>吃</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>阿巴阿巴</td>
-                                    <td>1084449480@qq.com</td>
-                                    <td>18770810875</td>
-                                    <td>睡</td>
-                                </tr>
+                                <% for(let o of data){%>
+                                    <tr>
+                                        <td>
+                                            <%=o.id %>
+                                        </td>
+                                        <td>
+                                            <%=o.username %>
+                                        </td>
+                                        <td>
+                                            <%=o.mail %>
+                                        </td>
+                                        <td>
+                                            <%=o.telephone %>
+                                        </td>
+                                        <td>
+                                            <%=o.habit %>
+                                        </td>
+                                        <td>
+                                            <%=o.password %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
                             </tbody>
                         </table>
                     </div>

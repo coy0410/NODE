@@ -5,7 +5,10 @@ var database = require('../database');
 
 //后台用户管理
 router.get('/', function(req, res, next) {
-    res.render('back');
+    var strsel = 'select * from administrator';
+    database.query(strsel, (err, rows) => {
+        res.render('back', { data: rows });
+    })
 });
 
 

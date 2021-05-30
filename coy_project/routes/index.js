@@ -73,7 +73,7 @@ router.get('/author', function(req, res, next) {
         res.render('author', { data: rows });
     })
 });
-
+//查询
 router.post('/author', function(req, res) {
     var strsel1 = 'select * from author where username regexp "' + req.body.searchValue + '"';
     database.query(strsel1, (err, rows) => {
@@ -86,7 +86,6 @@ router.post('/author', function(req, res) {
     })
 })
 
-//查询
 
 
 
@@ -99,7 +98,10 @@ router.get('/sayings', function(req, res, next) {
 
 //用户列表
 router.get('/admin', function(req, res, next) {
-    res.render('admin')
+    var strsel2 = 'select * from author';
+    database.query(strsel2, (err, rows) => {
+        res.render('admin', { data: rows })
+    })
 });
 
 
