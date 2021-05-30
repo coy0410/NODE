@@ -74,6 +74,18 @@ router.get('/author', function(req, res, next) {
     })
 });
 
+router.post('/author', function(req, res) {
+    var strsel1 = 'select * from author where username regexp "' + req.body.searchValue + '"';
+    database.query(strsel1, (err, rows) => {
+        if (err) {
+            throw err
+        }
+        if (rows) {
+            res.json({ rows: rows })
+        }
+    })
+})
+
 //查询
 
 
@@ -156,7 +168,7 @@ router.get('/edit', function(req, res, next) {
 router.post('/edit', (req, res) => {
     var body = req.body
     var user1 = new User(body.username, body.password)
-    var strupd = 'update author set username = ' + user1.username + ',password = ' + user1.password + ' where id = ?';
+    var strupd = 'update author set username = "' + user1.username + '",password = ' + user1.password + ',re_password = ' + user1.password + ' where id = ?';
     database.query(strupd, [req.body.id], (err, rows) => {
         console.log(err);
         console.log(rows);

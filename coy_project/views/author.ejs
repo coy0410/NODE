@@ -54,7 +54,7 @@
                             <div class="layui-form-item" style="text-align:center;">
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <input autocomplete="off" class="layui-input" placeholder="请输入名称" type="text" name="id" value="">
+                                        <input autocomplete="off" class="layui-input searchInput" placeholder="请输入名称" type="text" value="">
                                     </div>
                                 </div>
                                 <div class="layui-inline" style="text-align:left;">
@@ -122,6 +122,42 @@
     <script type="text/javascript" src="/js2/layui.js"></script>
     <script type="text/javascript" src="/js2/icheck.js"></script>
     <script src="/js2/gn.js"></script>
+    <script>
+        $('form').on('submit', function(e) {
+            e.preventDefault()
+            let searchValue = $('.searchInput').val()
+            $.ajax({
+                type: "post",
+                url: "/author",
+                data: {
+                    searchValue: searchValue
+                },
+                success: function(data) {
+
+                    let inner = "";
+                    for (let i = 0; i < data.rows.length; i++) {
+                        inner += `< tr >
+                                <td>
+                                    ${data.rows[i].id} 
+                                </td> 
+                                <td>
+                                    ${data.rows[i].username}
+                                </td>
+                                <td>
+                                    ${data.rows[i].password}
+                                </td>
+                                <td class="text-center">
+                                <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id="${data.rows[i].id}">编辑</button>
+
+                                <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id="${data.rows[i].id}">删除</button>
+                                </td>
+                        < /tr >`
+                    }
+                    $('tbody').html(inner)
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
