@@ -138,7 +138,7 @@
                     for (let i = 0; i < data.rows.length; i++) {
                         inner +=
                             `
-                        < tr >
+                        <tr>
                                         <td>
                                            ${data.rows[i].id}
                                         </td>
@@ -152,9 +152,10 @@
                                             <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id=" ${data.rows[i].id}">编辑</button>
                                             <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id=" ${data.rows[i].id}">删除</button>
                                         </td>
-                        < /tr >                       
+                        </tr>                       
                         `
                     }
+                    console.log(inner);
                     $('tbody').html(inner)
                 }
             })

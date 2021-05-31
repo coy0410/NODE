@@ -24,11 +24,12 @@ router.get('/tracks', function(req, res, next) {
     res.render('tracks')
 });
 
-//博客
+//博客(主页)
 router.get('/blog', function(req, res, next) {
     var query = 'SELECT * FROM  article ORDER BY  articleID DESC';
     database.query(query, function(err, rows, fields) {
         var articles = rows;
+        //修改国际时间，美化时间
         articles.forEach(function(ele) {
             var year = ele.articleTime.getFullYear();
             var month = ele.articleTime.getMonth() + 1 > 10 ? ele.articleTime.getMonth() : '0' + (ele.articleTime.getMonth() + 1);
@@ -38,6 +39,34 @@ router.get('/blog', function(req, res, next) {
         res.render("blog", { articles: articles });
     });
 });
+
+//文章内容页
+router.get('/articles/:articleID', (req, res, next) => {
+    var articleID = req.params.articleID;
+    var query = 'SELECT * FROM article WHERE articleID =' + database.escape(articleID);
+    database.query(query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        var query = 'UPDATE article SET articleClick = articleClick+1 WHERE articleID =' + database.escape(articleID);
+        var article = rows[0];
+        database.query(query, (err, rows, fields) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+        })
+        var year = article.articleTime.getFullYear();
+        var month = article.articleTime.getMonth() + 1 > 10 ? article.articleTime.getMonth() : '0' + (article.articleTime.getMonth() + 1);
+        var date = article.articleTime.getDate() > 10 ? article.articleTime.getDate() : '0' + article.articleTime.getDate();
+        article.articleTime = year + '-' + month + '-' + date;
+        res.render('article', { article: article });
+    });
+});
+
+//写文章页面
+router.
 
 
 
