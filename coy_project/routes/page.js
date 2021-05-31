@@ -19,8 +19,10 @@ router.post('/', (req, res, next) => {
     // password = hash.digest('hex');
     var query = 'select * from author where username =' + database.escape(username) + 'and password=' + database.escape(password);
     database.query(query, function(err, rows, fields) {
+        var user = rows[0]
         if (err) throw err;
         if (rows != "") {
+            req.session.user = user;
             res.redirect('/yes')
         } else {
             res.render('page', { message: '用户名或密码错误' });

@@ -10,19 +10,20 @@ router.get('/', function(req, res, next) {
 
 //主页
 //圈子
-router.get('/friends', function(req, res, next) {
-    res.render('friends')
+router.get('/circle', function(req, res, next) {
+    res.render('circle')
 });
 
 //简介
-router.get('/about', function(req, res, next) {
-    res.render('about')
+router.get('/introduce', function(req, res, next) {
+    res.render('introduce')
 });
 
 //旅行
 router.get('/tracks', function(req, res, next) {
     res.render('tracks')
 });
+
 
 //博客(主页)
 router.get('/blog', function(req, res, next) {
@@ -66,7 +67,41 @@ router.get('/articles/:articleID', (req, res, next) => {
 });
 
 //写文章页面
-router.
+router.get('/write', (req, res, next) => {
+    var user = req.session.user;
+    if (!user) {
+        res.redirect('/page');
+        return;
+    }
+    res.render('write');
+})
+
+router.post('/write', ((req, res, next) => {
+    var title = req.body.title;
+    var content = req.body.content;
+    var authorName = req.session.user.username;
+    var query = 'INSERT article SET articleTitle=' + database.escape(title) + ',articleAuthor=' + database.escape(authorName) + ',articleContent=' + database.escape(content) + ',articleTime=CURDATE()';
+    database.query(query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.redirect('/blog');
+    })
+}))
+
+//友情链接
+router.get('/friends', (req, res, next) => {
+    res.render('friends');
+})
+
+//关于博客
+router.get('/about', (req, res, next) => {
+    res.render('about');
+})
+
+
+
 
 
 

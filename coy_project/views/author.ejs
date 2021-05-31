@@ -126,7 +126,7 @@
         $('form').on('submit', function(e) {
 
             e.preventDefault()
-            let searchValue = $('.searchInput').val()
+            var searchValue = $('.searchInput').val()
             $.ajax({
                 type: "post",
                 url: "/author",
