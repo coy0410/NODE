@@ -100,6 +100,55 @@ router.get('/about', (req, res, next) => {
     res.render('about');
 })
 
+//修改博客文章
+router.get('/modify/:articleID', (req, res, next) => {
+    var articleID = req.params.articleID;
+    var user = req.session.user;
+    var query = 'SELECT * FROM article WHERE articleID=' + database.escape(articleID);
+    if (!user) {
+        res.redirect('/page');
+        return;
+    }
+    database.query(query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        var article = rows[0];
+        var content = article.articleContent;
+        var title = article.articleTitle;
+        res.render('modify', { user: user, title: title, content: content });
+    });
+});
+
+router.post('/modify/:articleID', (req, res, next) => {
+    var user = req.session.user;
+    var articleID = req.params.articleID;
+    var title = req.body.title;
+    var content = req.body.content;
+    var query = 'UPDATE article SET articleTitle=' + database.escape(title) + ',articleContent=' + database.escape(content) + 'WHERE articleID=' + database.escape(articleID);
+    database.query(query, (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.redirect('/blog');
+    });
+});
+
+//删除博客文章
+router.get('/delete/:articleID', (req, res, next) => {
+    let articleID = req.params.articleID;
+    let user = req.session.user;
+    let query = 'DELETE FROM article WHERE articleID=' + database.escape(articleID);
+    if (!user) {
+        res.redirect('/page');
+        return;
+    }
+    database.query(query, (err, rows, fields) => {
+        res.redirect('/blog');
+    });
+});
 
 
 
@@ -132,6 +181,7 @@ router.post('/author', function(req, res) {
         }
         if (rows) {
             res.json({ rows: rows })
+
         }
     })
 })

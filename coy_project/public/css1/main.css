@@ -309,3 +309,39 @@ section.articles {
 .about p {
     text-indent: 2em;
 }
+
+.no-found,
+.no-found body {
+    height: 100%;
+    width: 100%;
+}
+
+.no-found body {
+    background-image: url("../images/404.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.no-found h2 {
+    text-align: center;
+    font-size: 100px;
+    position: absolute;
+    width: 100%;
+    color: #00B7FF;
+}
+
+span.modify {
+    float: right;
+}
+
+span.modify a:hover {
+    color: #183D8E;
+}
+
+span.delete {
+    float: right;
+}
+
+span.delete a:hover {
+    color: #183D8E;
+}
