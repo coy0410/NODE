@@ -22,10 +22,10 @@
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src="/images/back01.jpg" class="layui-nav-img"> 苦行僧
+                        <img src="/images/back01.jpg" class="layui-nav-img"> 欧阳春
                     </a>
                 </li>
-                <li class="layui-nav-item"><a href="">退了</a></li>
+                <li class="layui-nav-item"><a href="adlo">退出登录</a></li>
             </ul>
         </div>
 
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="layui-inline" style="text-align:left;">
                                     <div class="layui-input-inline">
-                                        <button class="layui-btn"><i class="layui-icon"></i>查询</button>
+                                        <button class="layui-btn">查询</button>
                                     </div>
                                 </div>
                             </div>
@@ -119,6 +119,7 @@
         </div>
     </div>
     <script type="text/javascript" src="/js2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="/js2/layui.js"></script>
     <script type="text/javascript" src="/js2/icheck.js"></script>
     <script src="/js2/gn.js"></script>
@@ -158,6 +159,18 @@
                     $('tbody').html(inner)
                 }
             })
+        })
+
+        //编辑
+        $(document).on('click', '.upd_bank', function() {
+            var id = $(this).attr("data_id")
+            location.href = "/edit?id=" + id;
+        })
+
+        //删除
+        $(document).on('click', '.del_bank', function() {
+            var id = $(this).attr("data1_id")
+            location.href = "/del?id=" + id;
         })
     </script>
 </body>

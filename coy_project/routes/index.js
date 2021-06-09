@@ -230,6 +230,11 @@ router.get('/add', function(req, res, next) {
 })
 
 router.post('/add', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
     var strins = 'insert into author(username, password, re_password) values(?,?,?)';
     database.query(strins, [req.body.username, req.body.password, req.body.password], (err, rows) => {
         console.log(err);
@@ -249,6 +254,11 @@ router.get('/edit', function(req, res, next) {
 })
 
 router.post('/edit', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
     var body = req.body
     var user1 = new User(body.username, body.password)
     var strupd = 'update author set username = "' + user1.username + '",password = ' + user1.password + ',re_password = ' + user1.password + ' where id = ?';
@@ -271,6 +281,11 @@ router.get('/del', function(req, res, next) {
 })
 
 router.post('/del', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
     var strdel = 'delete from author where id = ?';
     database.query(strdel, [req.body.id], (err, rows) => {
         console.log(err);
