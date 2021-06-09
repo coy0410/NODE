@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var database = require('./../database');
 var User = require('./bean/user');
+var User2 = require('./bean/user2');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,7 +18,10 @@ router.get('/circle', function(req, res, next) {
 
 //简介
 router.get('/introduce', function(req, res, next) {
-    res.render('introduce')
+    var strsel = "select * from introduce";
+    database.query(strsel, (err, rows) => {
+        res.render('introduce', { data: rows });
+    })
 });
 
 //旅行
@@ -172,7 +177,7 @@ router.get('/author', function(req, res, next) {
         res.render('author', { data: rows });
     })
 });
-//查询
+//用户查询
 router.post('/author', function(req, res) {
     var strsel1 = 'select * from author where username regexp "' + req.body.searchValue + '"';
     database.query(strsel1, (err, rows) => {
@@ -191,10 +196,103 @@ router.post('/author', function(req, res) {
 
 
 
-//评论管理
-router.get('/sayings', function(req, res, next) {
-    res.render('sayings')
+//简介管理
+router.get('/introBack', function(req, res, next) {
+    var strsel = "select * from introduce";
+    database.query(strsel, (err, rows) => {
+        res.render('introBack', { data: rows });
+    })
 });
+//简介查询
+router.post('/introBack', function(req, res) {
+    var strsel1 = 'select * from introduce where title regexp "' + req.body.searchValue + '"';
+    database.query(strsel1, (err, rows) => {
+        if (err) {
+            throw err
+        }
+        if (rows) {
+            res.json({ rows: rows })
+
+        }
+    })
+})
+
+
+//简介新增
+router.get('/add1', function(req, res, next) {
+    res.render('add1')
+})
+
+router.post('/add1', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
+    var strins = 'insert into introduce(title,content) values(?,?)';
+    database.query(strins, [req.body.title, req.body.content], (err, rows) => {
+        console.log(err);
+        console.log(rows);
+        res.redirect('/introBack')
+    })
+})
+
+//简介修改
+router.get('/edit1', function(req, res, next) {
+    if (req.query.id != undefined) {
+        var strsel = 'select * from introduce where id = ?';
+        database.query(strsel, [req.query.id], (err, row) => {
+            res.render('edit1', { row: row[0] });
+        })
+    }
+})
+
+router.post('/edit1', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
+    var body = req.body
+    var user2 = new User2(body.title, body.content)
+    var strupd = 'update introduce set title = "' + user2.title + '" ,content = "' + user2.content + '" where id = ?';
+    database.query(strupd, [req.body.id], (err, rows) => {
+        console.log(err);
+        console.log(rows);
+        res.redirect('/introBack')
+
+    })
+})
+
+//简介删除
+router.get('/del1', function(req, res, next) {
+    if (req.query.id != undefined) {
+        var strdel = 'select * from introduce where id = ?';
+        database.query(strdel, [req.query.id], (err, row) => {
+            res.render('del1', { row: row[0] });
+        })
+    }
+})
+
+router.post('/del1', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
+    var strdel = 'delete from introduce where id = ?';
+    database.query(strdel, [req.body.id], (err, rows) => {
+        console.log(err);
+        console.log(rows);
+        res.redirect('/introBack')
+
+    })
+})
+
+
+
+
+
 
 //用户列表
 router.get('/admin', function(req, res, next) {
@@ -223,8 +321,8 @@ router.get('/yess', function(req, res, next) {
 
 
 
-//功能
-//新增
+//用户功能
+//用户新增
 router.get('/add', function(req, res, next) {
     res.render('add')
 })
@@ -243,7 +341,7 @@ router.post('/add', (req, res) => {
     })
 })
 
-//编辑
+//用户编辑
 router.get('/edit', function(req, res, next) {
     if (req.query.id != undefined) {
         var strsel = 'select * from author where id = ?';
@@ -270,7 +368,7 @@ router.post('/edit', (req, res) => {
     })
 })
 
-//删除
+//用户删除
 router.get('/del', function(req, res, next) {
     if (req.query.id != undefined) {
         var strdel = 'select * from author where id = ?';
