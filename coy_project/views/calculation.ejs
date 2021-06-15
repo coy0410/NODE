@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js制作简单的计算机</title>
+    <!-- <link rel="stylesheet" href="calculation.css"> -->
+    <style>
+        table {
+            width: 388px;
+            height: 332px;
+            border: 1px solid gray;
+            text-align: center;
+        }
+        
+        .big table tr:not(:first-child) td input {
+            width: 48px;
+            height: 41px;
+        }
+        
+        .big {
+            height: 501px;
+            width: 434px;
+            border: 1px solid white;
+            background-color: rgb(119, 136, 153);
+        }
+        
+        .big_two {
+            height: 468px;
+            width: 388px;
+            border: 1px solid white;
+            background-color: rgb(169, 169, 169);
+            position: relative;
+            top: 13px;
+            left: 17px;
+        }
+        
+        .words {
+            height: 57px;
+            width: 388px;
+        }
+        
+        .words div {
+            display: inline-block;
+        }
+        
+        .one {
+            width: 180px;
+            height: 57px;
+            text-align: left;
+            position: relative;
+            top: 13px;
+        }
+        
+        .two {
+            width: 180px;
+            height: 57px;
+            text-align: right;
+            position: relative;
+            top: 13px;
+        }
+        
+        .down {
+            width: 388px;
+            height: 66px;
+            text-align: left;
+            position: relative;
+            top: 23px;
+        }
+        
+        .big tr:first-child input {
+            height: 49px;
+            width: 90%;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+        <div class="big_two">
+            <div class="words">
+                <div class="one">
+                    <strong>
+                    简单的计算器
+                </strong>
+                </div>
+                <div class="two">
+                    <strong>
+                    科文维度
+                </strong>
+                </div>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td colspan="5">
+                            <input type="text" id="show" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="7">
+                        </td>
+                        <td>
+                            <input type="button" value="8">
+                        </td>
+                        <td>
+                            <input type="button" value="9">
+                        </td>
+                        <td>
+                            <input type="button" value="Back">
+                        </td>
+                        <td>
+                            <input type="button" value="C">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="4">
+                        </td>
+                        <td>
+                            <input type="button" value="5">
+                        </td>
+                        <td>
+                            <input type="button" value="6">
+                        </td>
+                        <td>
+                            <input type="button" value="*">
+                        </td>
+                        <td>
+                            <input type="button" value="/">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="1">
+                        </td>
+                        <td>
+                            <input type="button" value="2">
+                        </td>
+                        <td>
+                            <input type="button" value="3">
+                        </td>
+                        <td>
+                            <input type="button" value="+">
+                        </td>
+                        <td>
+                            <input type="button" value="-">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="0">
+                        </td>
+                        <td>
+                            <input type="button" value="00">
+                        </td>
+                        <td>
+                            <input type="button" value=".">
+                        </td>
+                        <td>
+                            <input type="button" value="%">
+                        </td>
+                        <td>
+                            <input type="button" value="=">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="down">
+                <strong>
+                    欢迎使用JavaScript计算机
+                </strong>
+            </div>
+
+        </div>
+    </div>
+    <!-- <script src="calculstion.js"></script> -->
+    <script>
+        let all = document.getElementsByTagName("input");
+        let show = document.getElementById("show");
+        let firstShow = "";
+        for (let i of all) {
+            if (i.type == "button") {
+                i.onclick = function() {
+                    if (this.value == "=") {
+                        show.value = eval(show.value);
+                    } else if (this.value == "C") {
+                        show.value = "";
+                    } else if (this.value == "Back") {
+                        show.value = firstShow;
+                    } else {
+                        firstShow = show.value;
+                        show.value += this.value;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

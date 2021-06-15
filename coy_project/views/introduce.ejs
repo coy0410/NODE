@@ -2,79 +2,46 @@
 <html class="found">
 
 <head>
-    <meta charset="UTF-8">
-    <title>About - coy的自留地</title>
-    <meta name="keywords" content="博客,个人网站,GeeYo,ThinkPHP,bootstrap">
-    <meta name="description" content="这里是欧阳春的个人网站，记录并分享着他想记录与分享的一切，可是他有点懒，更新的并不是那么频繁！">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <!-- Js -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/tether.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <link href="/css/style.css" type="text/css" rel="stylesheet" />
+    <!-- head -->
+    <%- include('./major_pub/head.ejs')%>
+        <title>简介---coy的自留地</title>
+        <!-- Js -->
+        <link href="/css/style.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
     <!-- Header -->
-    <div class="nav">
-        <a class="logo" href="project"><img src="/images/logo.png" width="40" title="coy的自留地"></a>
-        <a class="logo pull-right sobtn"><span class="glyphicon glyphicon-search" style="color: #B4B4B4;"></span></a>
-    </div>
-    <!-- ArtBox -->
-    <div style="padding-left: 1050px; position:absolute;">
-        <img src="/images/nn.png" width="300">
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="artbox col-sm-8">
-                <div class="about" style="margin-bottom: 40px;color:rgba(255, 255, 255, 0.979);">
-                    <% for(let o of data){%>
-                        <div><span style="font-size: 18pt;">
+    <%- include('./major_pub/header.ejs')%>
+        <!-- ArtBox -->
+        <div style="padding-left: 1050px; position:absolute;">
+            <img src="/images/nn.png" width="300">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="artbox col-sm-8">
+                    <div class="about" style="margin-bottom: 40px;color:rgba(255, 255, 255, 0.979);">
+                        <% for(let o of data){%>
+                            <div><span style="font-size: 18pt;">
                             <%=o.title %>
                         </span></div>
-                        <div>
-                            <%=o.content %>
-                        </div>
-                        <div>
-                            <p>&nbsp;</p>
-                        </div>
-                        <% } %>
+                            <div>
+                                <%=o.content %>
+                            </div>
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer -->
-    <div class="clear"></div>
-    <div class="foot">
-        <div class="container">
-            <div class="row" style="color:rgba(255, 255, 255, 0.979);padding-top: 100px;">
-                <div class="col-sm-4">粤ICP备16016164号-1</div>
-                <div class="col-sm-8 fr">Copyright © 2021
-                    <a href="#">AX</a> Rights Reserved.</div>
-                <p></p>
-            </div>
-        </div>
-        <!-- 弹出层 -->
-        <div class="so">
-            <i class="iconfont" title="关闭">×</i>
-            <div class="container">
-                <form action="https://www.baidu.com/baidu" target="_blank">
-                    <input name="tn" type="hidden" value="SE_zzsearchcode_shhzc78w">
-                    <input type="text" name="word" class="form-control" baiduSug="1" value="百度搜索..." />
-                    <input type="submit" style="display: none;" />
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="to-top">↑</div>
-    <div class="gb2-site">
-        <a id="gb2big5"><span>繁</span></a>
-    </div>
-    <script src="/js/GeeYo.js"></script>
-    <script src="/js/gb2big5.js"></script>
-    <script src="/js/intro.js"></script>
+        <!-- Footer -->
+        <%- include('./major_pub/footer.ejs')%>
+            <!-- 弹出层 -->
+            <%- include('./major_pub/popup.ejs')%>
+                <script src="/js/GeeYo.js"></script>
+                <script src="/js/gb2big5.js"></script>
+                <script src="/js/intro.js"></script>
 </body>
 
 </html>

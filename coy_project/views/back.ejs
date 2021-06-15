@@ -2,107 +2,74 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>coy博客后台管理</title>
-    <link rel="stylesheet" href="/css2/layui.css">
+    <%- include('./back_pub/head.ejs')%>
 </head>
 
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo">coy博客后台管理</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item"><a href="admin">用户列表</a></li>
-
-            </ul>
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img src="/images/back01.jpg" class="layui-nav-img"> 欧阳春
-                    </a>
-                </li>
-                <li class="layui-nav-item"><a href="adlo">退出登录</a></li>
-            </ul>
-        </div>
-
-        <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <li class="layui-nav-item"><a class="layui-this" href="back">控制台</a></li>
-                    <li class="layui-nav-item">
-                        <a href="author">用户管理</a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="introBack">简介管理</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="layui-body">
-            <!-- 内容主体区域 -->
-            <div style="padding: 15px;">
-                <fieldset class="layui-elem-field">
-                    <legend>控制台-管理员信息</legend>
-                    <div class="layui-field-box">
-                        <table class="layui-table">
-                            <colgroup>
-                                <col width="150">
-                                <col width="200">
-                                <col>
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>姓名</th>
-                                    <th>邮箱</th>
-                                    <th>电话</th>
-                                    <th>爱好</th>
-                                    <th>密码</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(let o of data){%>
-                                    <tr>
-                                        <td>
-                                            <%=o.id %>
-                                        </td>
-                                        <td>
-                                            <%=o.username %>
-                                        </td>
-                                        <td>
-                                            <%=o.mail %>
-                                        </td>
-                                        <td>
-                                            <%=o.telephone %>
-                                        </td>
-                                        <td>
-                                            <%=o.habit %>
-                                        </td>
-                                        <td>
-                                            <%=o.password %>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
+            <!-- header -->
+            <%- include('./back_pub/header.ejs')%>
+                <!-- aside -->
+                <%- include('./back_pub/aside.ejs')%>
+                    <div class="layui-body">
+                        <!-- 内容主体区域 -->
+                        <div style="padding: 15px;">
+                            <fieldset class="layui-elem-field">
+                                <legend>控制台-管理员信息</legend>
+                                <div class="layui-field-box">
+                                    <table class="layui-table">
+                                        <colgroup>
+                                            <col width="150">
+                                            <col width="200">
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>姓名</th>
+                                                <th>邮箱</th>
+                                                <th>电话</th>
+                                                <th>爱好</th>
+                                                <th>密码</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let o of data){%>
+                                                <tr>
+                                                    <td>
+                                                        <%=o.id %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.username %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.mail %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.telephone %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.habit %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.password %>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </div>
                     </div>
-                </fieldset>
-            </div>
+                    <!-- footer -->
+                    <%- include('./back_pub/footer.ejs')%>
         </div>
-
-        <div class="layui-footer">
-            <!-- 底部固定区域 -->
-            © layui.com - 底部固定区域
-        </div>
-    </div>
-    <script type="text/javascript" src="/js2/jquery.min.js"></script>
-    <script type="text/javascript" src="/js2/layui.js"></script>
-    <script type="text/javascript" src="/js2/index.js"></script>
-    <script type="text/javascript" src="/js2/dw.js"></script>
+        <script type="text/javascript" src="/js2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js2/layui.js"></script>
+        <script type="text/javascript" src="/js2/index.js"></script>
+        <script type="text/javascript" src="/js2/dw.js"></script>
 </body>
 
 </html>

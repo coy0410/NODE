@@ -2,142 +2,105 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>coy个人博客</title>
-    <link rel="stylesheet" href="/css2/layui.css">
-    <link rel="stylesheet" href="/css2/global.css">
-    <link rel="stylesheet" href="/css2/red.css">
+    <%- include('./back_pub/head.ejs')%>
 </head>
 
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo">coy博客后台管理</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item"><a href="admin">用户列表</a></li>
-
-            </ul>
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img src="/images/back01.jpg" class="layui-nav-img"> 欧阳春
-                    </a>
-                </li>
-                <li class="layui-nav-item"><a href="adlo">退出登录</a></li>
-            </ul>
-        </div>
-
-        <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <li class="layui-nav-item"><a href="back">控制台</a></li>
-                    <li class="layui-nav-item">
-                        <a href="author">用户管理</a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="introBack">简介管理</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="layui-body">
-            <!-- 内容主体区域 -->
-            <div style="padding: 15px;">
-                <fieldset class="layui-elem-field">
-                    <legend>用户管理 - 用户列表</legend>
-                    <div class="layui-field-box">
-                        <form class="layui-form" action="">
-                            <div class="layui-form-item" style="text-align:center;">
-                                <div class="layui-inline">
-                                    <div class="layui-input-inline">
-                                        <input autocomplete="off" class="layui-input searchInput" placeholder="请输入用户名" type="text" value="">
+            <!-- header -->
+            <%- include('./back_pub/header.ejs')%>
+                <!-- aside -->
+                <%- include('./back_pub/aside.ejs')%>
+                    <div class="layui-body">
+                        <!-- 内容主体区域 -->
+                        <div style="padding: 15px;">
+                            <fieldset class="layui-elem-field">
+                                <legend>用户管理 - 用户列表</legend>
+                                <div class="layui-field-box">
+                                    <form class="layui-form" action="">
+                                        <div class="layui-form-item" style="text-align:center;">
+                                            <div class="layui-inline">
+                                                <div class="layui-input-inline">
+                                                    <input autocomplete="off" class="layui-input searchInput" placeholder="请输入用户名" type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="layui-inline" style="text-align:left;">
+                                                <div class="layui-input-inline">
+                                                    <button class="layui-btn">查询</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <div class="layui-btn-group">
+                                        <input class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" type="button" onclick="add()" value="新增">
+                                        <input class="layui-btn layui-btn-xs dw-refresh" type="button" value="刷新" onclick="re()">
                                     </div>
+                                    <hr>
+                                    <table class="layui-table">
+                                        <colgroup>
+                                            <col width="150">
+                                            <col width="300">
+                                            <col width="300">
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>号码</th>
+                                                <th>用户</th>
+                                                <th>密码</th>
+                                                <th style="text-align:center;">operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let o of data){%>
+                                                <tr>
+                                                    <td>
+                                                        <%=o.id %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.username %>
+                                                    </td>
+                                                    <td>
+                                                        <%=o.password %>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id="<%=o.id %>">编辑</button>
+                                                        <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id="<%=o.id %>">删除</button>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="layui-inline" style="text-align:left;">
-                                    <div class="layui-input-inline">
-                                        <button class="layui-btn">查询</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <hr>
-                        <div class="layui-btn-group">
-                            <input class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" type="button" onclick="add()" value="新增">
-                            <input class="layui-btn layui-btn-xs dw-refresh" type="button" value="刷新" onclick="re()">
+                            </fieldset>
                         </div>
-                        <hr>
-
-                        <table class="layui-table">
-                            <colgroup>
-                                <col width="150">
-                                <col width="300">
-                                <col width="300">
-                                <col>
-                                <col>
-                            </colgroup>
-                            <thead>
-                                <tr>
-
-                                    <th>号码</th>
-                                    <th>用户</th>
-                                    <th>密码</th>
-                                    <th style="text-align:center;">operation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(let o of data){%>
-                                    <tr>
-                                        <td>
-                                            <%=o.id %>
-                                        </td>
-                                        <td>
-                                            <%=o.username %>
-                                        </td>
-                                        <td>
-                                            <%=o.password %>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog upd_bank" data_id="<%=o.id %>">编辑</button>
-                                            <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete del_bank" data1_id="<%=o.id %>">删除</button>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
                     </div>
-                </fieldset>
-            </div>
+                    <!-- footer -->
+                    <%- include('./back_pub/footer.ejs')%>
         </div>
-
-        <div class="layui-footer">
-            <!-- 底部固定区域 -->
-            © coy个人博客 - 底部固定区域
-        </div>
-    </div>
-    <script type="text/javascript" src="/js2/jquery.min.js"></script>
-    <script type="text/javascript" src="/js2/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="/js2/layui.js"></script>
-    <script type="text/javascript" src="/js2/icheck.js"></script>
-    <script src="/js2/gn.js"></script>
-    <script>
-        $('form').on('submit', function(e) {
-            e.preventDefault()
-            var searchValue = $('.searchInput').val()
-            $.ajax({
-                type: "post",
-                url: "/author",
-                data: {
-                    searchValue: searchValue
-                },
-                success: function(data) {
-                    let inner = "";
-                    for (let i = 0; i < data.rows.length; i++) {
-                        inner +=
-                            `
+        <script type="text/javascript" src="/js2/jquery.min.js"></script>
+        <script type="text/javascript" src="/js2/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="/js2/layui.js"></script>
+        <script type="text/javascript" src="/js2/icheck.js"></script>
+        <script src="/js2/gn.js"></script>
+        <script>
+            $('form').on('submit', function(e) {
+                e.preventDefault()
+                var searchValue = $('.searchInput').val()
+                $.ajax({
+                    type: "post",
+                    url: "/author",
+                    data: {
+                        searchValue: searchValue
+                    },
+                    success: function(data) {
+                        let inner = "";
+                        for (let i = 0; i < data.rows.length; i++) {
+                            inner +=
+                                `
                         <tr>
                                         <td>
                                            ${data.rows[i].id}
@@ -154,25 +117,25 @@
                                         </td>
                         </tr>                       
                         `
+                        }
+                        console.log(inner);
+                        $('tbody').html(inner)
                     }
-                    console.log(inner);
-                    $('tbody').html(inner)
-                }
+                })
             })
-        })
 
-        //编辑
-        $(document).on('click', '.upd_bank', function() {
-            var id = $(this).attr("data_id")
-            location.href = "/edit?id=" + id;
-        })
+            //编辑
+            $(document).on('click', '.upd_bank', function() {
+                var id = $(this).attr("data_id")
+                location.href = "/edit?id=" + id;
+            })
 
-        //删除
-        $(document).on('click', '.del_bank', function() {
-            var id = $(this).attr("data1_id")
-            location.href = "/del?id=" + id;
-        })
-    </script>
+            //删除
+            $(document).on('click', '.del_bank', function() {
+                var id = $(this).attr("data1_id")
+                location.href = "/del?id=" + id;
+            })
+        </script>
 </body>
 
 </html>

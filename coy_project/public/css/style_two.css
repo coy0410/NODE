@@ -2,6 +2,12 @@
 
 /*All Css*/
 
+.found1 body {
+    background-image: url("../images/ls.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 * {
     margin: 0 auto;
     padding: 0;
@@ -1399,6 +1405,10 @@ pre code {
 
 .links .linkt {
     text-align: center;
+    color: white;
+    margin-top: 200px;
+    top: -100px;
+    position: relative;
 }
 
 .links .linkb {
@@ -1433,7 +1443,7 @@ pre code {
 .links .linkb ul li p {
     margin-top: 1em;
     font-size: 0.6em;
-    color: #666;
+    color: rgb(240, 230, 212);
 }
 
 .links .linkb a {
@@ -2618,4 +2628,8 @@ pre code {
 
 .glyphicon-menu-up:before {
     content: "\e260"
+}
+
+b {
+    color: white;
 }

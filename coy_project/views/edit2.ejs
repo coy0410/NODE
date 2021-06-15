@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>编辑资料---coy的自留地</title>
+    <link rel="stylesheet" href="/css2/layui.css">
+    <link rel="icon" type="image/jpeg" size="144*144" href="/images/dlzc.png">
+</head>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>后台管理 - 编辑资料</legend>
+                <div class="layui-field-box">
+                    <form class="layui-form" action="/edit2" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<%=row.id %>">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">管理员名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="username" placeholder="请输入管理员名" autocomplete="off" class="layui-input" value="<%=row.username %>">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="mail" placeholder="请输入邮箱" autocomplete="off" class="layui-input" value="<%=row.mail %>">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="telephone" placeholder="请输入电话" autocomplete="off" class="layui-input" value="<%=row.telephone %>">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">爱好</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="habit" placeholder="请输入爱好" autocomplete="off" class="layui-input" value="<%=row.habit %>">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" value="<%=row.password %>">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">辅助文字</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图片</label>
+                            <div class="layui-input-block">
+                                <input type="file" name="img" placeholder="请上传图片" autocomplete="off" class="layui-input" value="<%=row.img %>">
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="submit" value="立即修改" class="layui-btn">
+                                    <input type="reset" value="重置" class="layui-btn">&nbsp;&nbsp;
+                                    <a href="myself"><input type="button" value="返回" class="layui-btn"></a>
+                                    <!-- <button class="layui-btn">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+            </fieldset>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/jS2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/layui.js"></script>
+
+    </body>
+
+</html>

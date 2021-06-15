@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米商城 - 小米10 Pro、Redmi K30 Pro、小米MIX Alpha，小米电视官方网站</title>
+    <link rel="icon" type="image/png" sizes="144*144" href="/ever_xm/小米.jpg">
+    <!-- <link rel="stylesheet" href="xm.css"> -->
+    <style>
+        /* 基本 */
+        
+        body,
+        p,
+        ul,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        /* 标题 */
+        
+        .nav {
+            background-color: #f5f5f5;
+            width: 1519px;
+            height: 845px;
+        }
+        
+        .container {
+            width: 1226px;
+            height: 100%;
+            margin: 0 auto;
+        }
+        
+        .nav .box-hd h2 {
+            font-size: 22px;
+            font-weight: 200;
+            line-height: 58px;
+            color: #333;
+            margin-left: 160px;
+        }
+        
+        .nav .box-hd .more {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 135px;
+        }
+        
+        .nav .box-hd .more a {
+            font-size: 16px;
+            line-height: 58px;
+            color: #424242;
+        }
+        
+        .nav .box-hd .more :hover {
+            color: #ff6700;
+        }
+        /* 内容 */
+        
+        .row {
+            display: block;
+            text-align: center;
+            margin-left: 160px;
+        }
+        /* .row {
+    content: '';
+    clear: both;
+    display: block;
+} */
+        
+        .box-bd .row-left {
+            float: left;
+            width: 234px;
+        }
+        
+        .box-bd .row-right {
+            float: left;
+            width: 234px;
+        }
+        
+        .box-bd .row-left a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .box-bd .row-left a img {
+            width: 234px;
+            height: 614px;
+        }
+        
+        .box-bd .row-right ul {
+            /* 超出部分隐藏 */
+            overflow: hidden;
+        }
+        
+        .box-bd .row-right ul li {
+            float: left;
+            height: 260px;
+            padding: 20px 0;
+            background-color: #fff;
+            width: 234px;
+            position: relative;
+            margin-left: 14px;
+            margin-bottom: 14px;
+        }
+        
+        .box-bd .row-right ul li .picture {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 18px;
+        }
+        
+        .box-bd .row-right ul li .picture a {
+            display: block;
+        }
+        
+        .box-bd .row-right ul li .picture a img {
+            width: 160px;
+            height: 160px;
+        }
+        
+        .box-bd .row-right ul li .title {
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+        }
+        
+        .box-bd .row-right ul li .title a {
+            color: #333;
+        }
+        
+        .box-bd .row-right ul li .desc {
+            height: 18px;
+            font-size: 12px;
+            text-align: center;
+            color: #b0b0b0;
+            margin: 0 10px 10px;
+            overflow: hidden;
+            /* 禁止换行 */
+            white-space: nowrap;
+            /* 超出部分用省略号表示 */
+            text-overflow: ellipsis;
+        }
+        
+        .box-bd .row-right ul li .price {
+            text-align: center;
+            color: #ff6700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div>
+            <!-- 标题 -->
+            <div class="box-hd">
+                <h2>手机</h2>
+                <div class="more">
+                    <a href="#">查看全部 > </a>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="box-bd">
+                <div class="row">
+                    <!-- 内容左边 -->
+                    <div class="row-left">
+                        <a href="#">
+                            <img src="/ever_xm/big1.jpg">
+                        </a>
+                    </div>
+                    <!-- 内容右边 -->
+                    <div id="row-right">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <script src="xm.js"></script> -->
+    <script>
+        class Xm {
+            constructor(img, title, text, price) {
+                this.img = img;
+                this.title = title;
+                this.text = text;
+                this.price = price;
+            }
+        }
+
+        let list = Array.of(
+            new Xm("/ever_xm/9.1.jpg", "Note 9 Pro", "一亿像素夜景相机，120Hz六档变速高刷屏", "1599元起"),
+            new Xm("/ever_xm/9.2.jpg", " Note 9", "天玑 800U处理器，5000mAh电池，", "1299元起"),
+            new Xm("/ever_xm/9.3.jpg", "Note 9 4G", "6000mAh长续航", "999元起"),
+            new Xm("/ever_xm/8.1.jpg", "小米10 至尊版", " 120X 变焦/120W秒充/120Hz屏幕", "5299元起"),
+            new Xm("/ever_xm/8.2.jpg", "Redmi K30S 至尊纪念版", "144Hz[7档]变速高刷屏", "2599元起"),
+            new Xm("/ever_xm/8.3.jpg", "Redmi K30 至尊版", "120Hz弹出全面屏，天玑1000+旗舰处理器", "1999元起"),
+            new Xm("/ever_xm/8.4.jpg", "腾讯黑鲨3S ", "骁龙865处理器，120Hz刷新率", "3999元起"),
+            new Xm("/ever_xm/8.5.jpg", "Redmi 9A", "5000mAh长循环大电量，6.53超大护眼屏幕", "599元起")
+        )
+
+        let all = "";
+        for (let i in list) {
+            let content =
+                `
+    <div class="row-right">
+        <ul>
+            <li>
+                <!-- 图像 -->
+                <div class="picture">
+                <a href="#">
+                    <img src="${list[i].img}">
+                </a>
+                <!-- 标题 -->
+                <h3 class="title">
+                <a href="#">
+                    ${list[i].title} 
+                </a>
+                </h3>
+                <p class="desc">
+                    ${list[i].text}
+                </p>
+                <p class="price">
+                    <span class="num">${list[i].price}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+        `;
+            all += content;
+        }
+        document.getElementById("row-right").innerHTML = all;
+    </script>
+</body>
+
+</html>

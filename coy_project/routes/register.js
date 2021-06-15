@@ -48,10 +48,14 @@ router.get('/', function(req, res, next) {
 router.post('/', (req, res, next) => {
     var body = req.body
     var user = new User(body.username, body.password, body.re_password)
-    var str1 = 'insert into author (username,password,re_password) values(" ' + user.username + '"," ' + user.password + '"," ' + user.re_password + '")'; //添加数据
+    var str1 = 'insert into author (username,password,re_password) values("' + user.username + '", "' + user.password + '", "' + user.re_password + '")'; //添加数据
     var str2 = 'SELECT * FROM author'; //查询数据
     database.query(str2, (err, results) => {
         if (err) throw err;
+        if (body.username == '' && body.password == '') {
+            res.render('register', { message: '用户名和密码不能为空' });
+            return;
+        }
         if (body.password != body.re_password) {
             res.render('register', { message: '两次输入的密码不一致' });
             return;
@@ -68,8 +72,8 @@ router.post('/', (req, res, next) => {
             if (ta) {
                 database.query(str1, (err, results) => {
                     if (err) throw err;
-                    console.log(results);
-                    console.log(user);
+                    // console.log(results);
+                    // console.log(user);
                     res.redirect('yeah')
 
                 })

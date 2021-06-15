@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./back_pub/head.ejs')%>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <!-- header -->
+            <%- include('./back_pub/header.ejs')%>
+                <!-- aside -->
+                <%- include('./back_pub/aside.ejs')%>
+                    <div class="layui-body">
+                        <!-- 内容主体区域 -->
+                        <div style="padding: 15px;">
+                            <fieldset class="layui-elem-field">
+                                <legend>简介管理 - 用户列表</legend>
+                                <div class="layui-field-box">
+                                    <table class="layui-table" style="background-color:rgba(255,255,255,0.1);font-weight: bolder" lay-skin="line">
+                                        <% for(let o of data){%>
+                                            <!-- <tr>
+                                    <td>号码：</td>
+                                    <td>
+                                        <%=o.id %>
+                                    </td>
+                                </tr> -->
+                                            <img src="<%=o.img %>" style=" border-radius: 50%; height: 150px; width: 150px;">
+                                            <hr>
+                                            <tr>
+                                                <div class="layui-btn-group">
+                                                    <input class="layui-btn layui-btn-xs dw-refresh upd_detail" type="button" value="编辑资料" data_id="<%=o.id %>">
+                                                    <input class="layui-btn layui-btn-xs dw-refresh" type="button" value="刷新" onclick="re()">
+                                                </div>
+                                </div>
+                                </tr>
+                                <hr>
+                                <tr>
+                                    <td>管理员名：</td>
+                                    <td>
+                                        <%=o.username %>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>邮箱：</td>
+                                    <td>
+                                        <%=o.mail %>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>电话：</td>
+                                    <td>
+                                        <%=o.telephone %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>爱好：</td>
+                                    <td>
+                                        <%=o.habit %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>登录密码：</td>
+                                    <td>
+                                        <%=o.password %>
+                                    </td>
+                                </tr>
+
+                                <% } %>
+                                    </table>
+                        </div>
+                        </fieldset>
+                    </div>
+        </div>
+        <!-- footer -->
+        <%- include('./back_pub/footer.ejs')%>
+    </div>
+    <script type="text/javascript" src="/js2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/layui.js"></script>
+    <script type="text/javascript" src="/js2/icheck.js"></script>
+    <script type="text/javascript" src="/js2/gn3.js"></script>
+</body>
+
+</html>

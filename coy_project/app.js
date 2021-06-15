@@ -13,6 +13,10 @@ var pageRouter = require('./routes/page');
 var registerRouter = require('./routes/register');
 var backRouter = require('./routes/back');
 var adloRouter = require('./routes/adlo');
+var logoutRouter = require('./routes/logout');
+var logout2Router = require('./routes/logout2');
+
+
 
 
 
@@ -48,6 +52,13 @@ app.use('/page', pageRouter);
 app.use('/register', registerRouter);
 app.use('/back', backRouter);
 app.use('/adlo', adloRouter);
+app.use('/logout', logoutRouter);
+app.use('/logout2', logout2Router);
+
+
+
+
+
 
 
 // catch 404 and forward to error handler

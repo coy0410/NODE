@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var database = require('./../database');
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 var User = require('./bean/user');
 var User2 = require('./bean/user2');
+var User3 = require('./bean/user3');
 
 
 /* GET home page. */
@@ -75,7 +79,7 @@ router.get('/articles/:articleID', (req, res, next) => {
 router.get('/write', (req, res, next) => {
     var user = req.session.user;
     if (!user) {
-        res.redirect('/page');
+        res.render('page', { message: '尚未登录，请登录后操作' });
         return;
     }
     res.render('write');
@@ -111,7 +115,7 @@ router.get('/modify/:articleID', (req, res, next) => {
     var user = req.session.user;
     var query = 'SELECT * FROM article WHERE articleID=' + database.escape(articleID);
     if (!user) {
-        res.redirect('/page');
+        res.render('page', { message: '尚未登录，请登录后操作' });
         return;
     }
     database.query(query, (err, rows, fields) => {
@@ -147,7 +151,7 @@ router.get('/delete/:articleID', (req, res, next) => {
     let user = req.session.user;
     let query = 'DELETE FROM article WHERE articleID=' + database.escape(articleID);
     if (!user) {
-        res.redirect('/page');
+        res.render('page', { message: '尚未登录，请登录后操作' });
         return;
     }
     database.query(query, (err, rows, fields) => {
@@ -179,6 +183,11 @@ router.get('/author', function(req, res, next) {
 });
 //用户查询
 router.post('/author', function(req, res) {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
     var strsel1 = 'select * from author where username regexp "' + req.body.searchValue + '"';
     database.query(strsel1, (err, rows) => {
         if (err) {
@@ -205,6 +214,11 @@ router.get('/introBack', function(req, res, next) {
 });
 //简介查询
 router.post('/introBack', function(req, res) {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
     var strsel1 = 'select * from introduce where title regexp "' + req.body.searchValue + '"';
     database.query(strsel1, (err, rows) => {
         if (err) {
@@ -212,7 +226,6 @@ router.post('/introBack', function(req, res) {
         }
         if (rows) {
             res.json({ rows: rows })
-
         }
     })
 })
@@ -231,8 +244,8 @@ router.post('/add1', (req, res) => {
     }
     var strins = 'insert into introduce(title,content) values(?,?)';
     database.query(strins, [req.body.title, req.body.content], (err, rows) => {
-        console.log(err);
-        console.log(rows);
+        // console.log(err);
+        // console.log(rows);
         res.redirect('/introBack')
     })
 })
@@ -321,6 +334,7 @@ router.get('/yess', function(req, res, next) {
 
 
 
+
 //用户功能
 //用户新增
 router.get('/add', function(req, res, next) {
@@ -394,10 +408,86 @@ router.post('/del', (req, res) => {
 })
 
 
+//后台管理员页面
+router.get('/myself', function(req, res, next) {
+    var strsel = 'select * from administrator';
+    database.query(strsel, (err, rows) => {
+        res.render('myself', { data: rows });
+    })
+});
+
+//管理员更改资料：
+router.get('/edit2', function(req, res, next) {
+    if (req.query.id != undefined) {
+        var strsel = 'select * from administrator where id = ?';
+        database.query(strsel, [req.query.id], (err, row) => {
+            res.render('edit2', { row: row[0] });
+        })
+    }
+})
+
+router.post('/edit2', (req, res) => {
+    var user = req.session.user;
+    if (!user) {
+        res.render('adlo', { message: '尚未登录，请管理员登录后操作 ' });
+        return;
+    }
+    var form = formidable({
+        multiples: true, //多文件上传
+        uploadDir: path.join(__dirname, "../public/imgs") //路径
+    });
+    form.parse(req, (err, fields, files) => {
+        var newName = path.join(__dirname, "../public/imgs", Date.now() + path.extname(files.img.name));
+        fs.rename(files.img.path, newName, (err => {
+            console.log(err);
+        }));
+        var body = fields
+        var user3 = new User3(body.username, body.mail, body.telephone, body.habit, body.password, newName)
+        var strupd = 'update administrator set username = "' + user3.username + '",mail = "' + user3.mail + '",telephone = ' + user3.telephone + ',habit = "' + user3.habit + '",password = ' + user3.password + ',re_password = ' + user3.password + ',img = "' + "/imgs/" + newName.substring(newName.length - 17) + '" where id = ?';
+        // console.log(newName);
+        // console.log(newName.substring(newName.length - 17));
+        database.query(strupd, [fields.id], (err, rows) => {
+            if (err) throw err;
+            // console.log(err);
+            // console.log(rows);
+            res.redirect('/myself')
+
+        })
+    });
+})
 
 
 
 
+
+
+
+
+//曾经多页面
+//小米页面
+router.get('/xm', function(req, res, next) {
+    res.render('xm')
+});
+
+//望庐山瀑布
+router.get('/see_lushan', function(req, res, next) {
+    res.render('see_lushan')
+});
+
+//当当网
+router.get('/ddw', function(req, res, next) {
+    res.render('ddw')
+});
+
+//小米导航栏
+router.get('/mi', function(req, res, next) {
+    res.render('mi')
+});
+
+//制作计算器
+router.get('/calculation', function(req, res, next) {
+    res.render('calculation')
+});
 
 
 module.exports = router;

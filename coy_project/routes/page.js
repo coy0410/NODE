@@ -24,7 +24,11 @@ router.post('/', (req, res, next) => {
         if (rows != "") {
             req.session.user = user;
             res.redirect('/yes')
+        }
+        if (username == "" && password == "") {
+            res.render('page', { message: '用户名和密码不能为空' });
         } else {
+            console.log(user);
             res.render('page', { message: '用户名或密码错误' });
             return;
         }
